@@ -9,7 +9,49 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ProfileImages\" />
+    <Compile Remove="ProfileImages - Copy\**" />
+    <Compile Remove="ProfileImages\**" />
+    <EmbeddedResource Remove="ProfileImages - Copy\**" />
+    <EmbeddedResource Remove="ProfileImages\**" />
+    <None Remove="ProfileImages - Copy\**" />
+    <None Remove="ProfileImages\**" />
+    <Page Remove="ProfileImages - Copy\**" />
+    <Page Remove="ProfileImages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="image1.jpg" />
+    <None Remove="image2.jpg" />
+    <None Remove="image3.jpg" />
+    <None Remove="image4.jpg" />
+    <None Remove="image5.jpg" />
+    <None Remove="ProfilePictures\image1.jpg" />
+    <None Remove="ProfilePictures\image2.jpg" />
+    <None Remove="ProfilePictures\image3.jpg" />
+    <None Remove="ProfilePictures\image4.jpg" />
+    <None Remove="ProfilePictures\image5.jpg" />
+    <None Remove="users.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ProfilePictures\image1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ProfilePictures\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ProfilePictures\image3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ProfilePictures\image4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ProfilePictures\image5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="users.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
