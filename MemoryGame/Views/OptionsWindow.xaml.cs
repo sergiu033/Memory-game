@@ -1,5 +1,4 @@
-﻿using MemoryGame.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +15,13 @@ using System.Windows.Shapes;
 namespace MemoryGame.Views
 {
     /// <summary>
-    /// Interaction logic for AddUserWindow.xaml
+    /// Interaction logic for OptionsWindow.xaml
     /// </summary>
-    public partial class AddUserWindow : Window
+    public partial class OptionsWindow : Window
     {
-        private Action refreshInSignUp;
-        public AddUserWindow(Action refreshAction)
+        public OptionsWindow()
         {
             InitializeComponent();
-            refreshInSignUp = refreshAction;
-
-            var viewModel = new AddUserViewModel(refreshInSignUp);
-            this.DataContext = viewModel;
         }
     }
 }

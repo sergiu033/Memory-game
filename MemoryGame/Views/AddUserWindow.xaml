@@ -2,19 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryGame.ViewModels"
-        Title="Add User" Height="300" Width="400">
-
-    <Window.DataContext>
-        <local:AddUserViewModel/>
-    </Window.DataContext>
-
+        Title="Add User" Height="300" Width="300">
     <Grid>
-        <TextBox x:Name="UserNameTextBox" Text="{Binding NewUser.UserName}" Width="200" Height="30" Margin="10" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Button Content="Select Profile Picture" Command="{Binding SelectProfilePictureCommand}" Width="200" Height="30" Margin="10,50,10,10" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="3" Text="{Binding NewUserName}" Width="200" Margin="50,25,50,-3"/>
 
-        <Image Source="{Binding NewUser.ProfilePictureFilePath}" Width="100" Height="100" Margin="10,100,10,10" VerticalAlignment="Top"/>
+        <Image Grid.Row="2" Source="{Binding SelectedImageSource}" Width="150" Height="150" Margin="68,10,0,10" HorizontalAlignment="Left"/>
 
-        <Button Content="Add User" Command="{Binding AddUserCommand}" Width="200" Height="30" Margin="10,160,10,10" VerticalAlignment="Top"/>
+        <Button Grid.Row="3" Content="Add User" Command="{Binding AddUserCommand}" Width="100" Margin="100,60,100,-40"/>
+        <Button Content="&gt;&gt;" Command="{Binding MovePictureRightCommand}" HorizontalAlignment="Left" Margin="178,142,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Content="&lt;&lt;" Command="{Binding MovePictureLeftCommand}" HorizontalAlignment="Left" Margin="100,142,0,0" Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </Window>

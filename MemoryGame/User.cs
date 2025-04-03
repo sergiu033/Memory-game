@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.IO;
+using System.Text.Json.Serialization;
 
 namespace MemoryGame
 {
@@ -38,6 +42,27 @@ namespace MemoryGame
                 }
             }
         }
+
+        [JsonIgnore]
+        public ImageSource ProfilePicture
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ProfilePictureFilePath))
+                    return null;
+
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ProfilePictureFilePath);
+
+                if (File.Exists(fullPath))
+                {
+                    return new BitmapImage(new Uri(fullPath, UriKind.Absolute));
+                }
+
+                return null;
+            }
+        }
+
+        public User() { }
 
         public User(string userName, string profilePictureFilePath)
         {

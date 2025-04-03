@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Windows.Input;
 using MemoryGame.Views;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MemoryGame.ViewModels
 {
@@ -28,56 +29,33 @@ namespace MemoryGame.ViewModels
 
         public ICommand DeleteUserCommand { get; }
         public ICommand OpenAddUserWindowCommand {  get; }
+        public ICommand OpenOptionsWindowCommand { get; }
 
         public SignInViewModel()
         {
             Users = LoadUsersFromJson("users.json");
 
-            OpenAddUserWindowCommand = new RelayCommands(OpenAddUserWindow);
-            DeleteUserCommand = new RelayCommands(DeleteUser, CanDeleteUser);
+            OpenAddUserWindowCommand = new RelayCommand(OpenAddUserWindow);
+            DeleteUserCommand = new RelayCommand(DeleteUser, IsUserSelected);
+            OpenOptionsWindowCommand = new RelayCommand(OpenOptionsWindow, IsUserSelected);
         }
 
         private ObservableCollection<User> LoadUsersFromJson(string filePath)
         {
-            try
+            string json = File.ReadAllText(filePath);
+            var users = JsonSerializer.Deserialize<ObservableCollection<User>>(json, new JsonSerializerOptions
             {
-                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
+                PropertyNameCaseInsensitive = true
+            });
 
-                if (File.Exists(fullPath))
-                {
-                    string json = File.ReadAllText(fullPath);
-                    var users = JsonSerializer.Deserialize<ObservableCollection<User>>(json, new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
-
-                    return users ?? new ObservableCollection<User>();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error loading JSON: " + ex.Message);
-            }
-
-            return new ObservableCollection<User>();
+            return users ?? new ObservableCollection<User>();
         }
 
         private void SaveUsersToJson(string filePath)
         {
-            try
-            {
-                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
-                string json = JsonSerializer.Serialize(Users, new JsonSerializerOptions
-                {
-                    WriteIndented = true
-                });
+            string json = JsonSerializer.Serialize(Users.ToList());
 
-                File.WriteAllText(fullPath, json);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error saving JSON: " + ex.Message);
-            }
+            File.WriteAllText(filePath, json);
         }
 
         private void DeleteUser(object parameter)
@@ -90,20 +68,33 @@ namespace MemoryGame.ViewModels
             }
         }
 
-        private bool CanDeleteUser(object parameter)
+        private bool IsUserSelected(object parameter)
         {
             return SelectedUser != null;
         }
 
         private void OnSelectedUserChanged()
         {
-            (DeleteUserCommand as RelayCommands)?.RaiseCanExecuteChanged();
+            (DeleteUserCommand as RelayCommand)?.RaiseCanExecuteChanged();
+            (OpenOptionsWindowCommand as RelayCommand)?.RaiseCanExecuteChanged();
         }
 
         private void OpenAddUserWindow(object parameter)
         {
-            AddUserWindow addUserWindow = new AddUserWindow();
+            AddUserWindow addUserWindow = new AddUserWindow(RefreshUserList);
             addUserWindow.ShowDialog();
+        }
+
+        private void OpenOptionsWindow(object parameter)
+        {
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.ShowDialog();
+        }
+
+        public void RefreshUserList()
+        {
+            Users = LoadUsersFromJson("users.json");
+            OnPropertyChanged(nameof(Users));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

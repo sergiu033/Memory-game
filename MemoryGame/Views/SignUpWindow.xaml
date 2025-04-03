@@ -34,7 +34,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Image Grid.Column="3" Height="154" Margin="63,44,62,0" VerticalAlignment="Top" Source="{Binding SelectedUser.ProfilePictureFilePath}"/>
+            <Image Grid.Column="3" Height="154" Margin="63,44,62,0" VerticalAlignment="Top" Source="{Binding SelectedUser.ProfilePicture}"/>
         </Grid>
 
         <Grid Grid.Row="3">
@@ -50,10 +50,10 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Content="New User" Command="{Binding OpenAddUserWindowCommand}"></Button>
-            <Button Grid.Column="3" Content="Delete User" Command="{Binding DeleteUserCommand}"></Button>
-            <Button Grid.Column="5" Content="Play"></Button>
-            <Button Grid.Column="7" Content="Quit"></Button>
+            <Button Grid.Column="1" Content="New User" Command="{Binding OpenAddUserWindowCommand}"/>
+            <Button Grid.Column="3" Content="Delete User" Command="{Binding DeleteUserCommand}"/>
+            <Button Grid.Column="5" Content="Play" Command="{Binding OpenOptionsWindowCommand}"/>
+            <Button Grid.Column="7" Content="Quit" Click="Button_Click"/>
         </Grid>
 
         <TextBlock Grid.Row="0" Margin="0,39,0,0" TextWrapping="Wrap" Text="Enjoy playing this memory game!" VerticalAlignment="Top" FontSize="20" TextAlignment="Center"/>
