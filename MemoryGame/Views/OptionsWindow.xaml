@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemoryGame.Views"
         mc:Ignorable="d"
-        Title="OptionsWindow" Height="450" Width="800">
+        Title="OptionsWindow" Height="450" Width="650">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <Button Content="File" HorizontalAlignment="Center" Margin="0,137,0,0" VerticalAlignment="Top" Height="35" Width="101"/>
+        <Button Content="Options" HorizontalAlignment="Center" Margin="0,177,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Options_Click"/>
+        <Button Content="Help" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Help_Click"/>
+        <Button Content="Quit" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Quit_Click"/>
+
+        <StackPanel x:Name="Options" Grid.Column="1" VerticalAlignment="Center" >
+            <Button Content="Standard" Width="100"/>
+            <Button Content="Custom" Width="100"/>
+            <Slider x:Name="Rows"
+                    Minimum="2"
+                    Maximum="6"
+                    Value="4"
+                    TickFrequency="1"
+                    IsSnapToTickEnabled="True"
+                    Width="100"
+                    Margin="10"/>
+        </StackPanel>
+
+        <StackPanel x:Name="Help" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
+            <TextBlock TextAlignment="Center">
+                  Cărpinișan Sergiu Javier
+                  <LineBreak/>
+                  sergiu.carpinisan@student.unitbv.ro
+                  <LineBreak/>
+                  10LF331
+                  <LineBreak/>
+                  Informatică aplicată
+            </TextBlock>
+        </StackPanel>
+
     </Grid>
 </Window>

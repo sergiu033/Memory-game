@@ -87,7 +87,7 @@ namespace MemoryGame.ViewModels
 
         private void OpenOptionsWindow(object parameter)
         {
-            OptionsWindow optionsWindow = new OptionsWindow();
+            OptionsWindow optionsWindow = new OptionsWindow(SelectedUser);
             optionsWindow.ShowDialog();
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryGame.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,32 @@ namespace MemoryGame.Views
     /// </summary>
     public partial class OptionsWindow : Window
     {
-        public OptionsWindow()
+        private User SelectedUser;
+        public OptionsWindow(User selectedUser)
         {
             InitializeComponent();
+            SelectedUser = selectedUser;
+
+            var viewModel = new OptionsViewModel(SelectedUser);
+            this.DataContext = viewModel;
+
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            Help.Visibility = Visibility.Visible;
+            Options.Visibility = Visibility.Collapsed;
+        }
+
+        private void Options_Click(object sender, RoutedEventArgs e)
+        {
+            Options.Visibility = Visibility.Visible;
+            Help.Visibility = Visibility.Collapsed;
+        }
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
