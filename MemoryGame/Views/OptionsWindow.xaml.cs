@@ -29,18 +29,30 @@ namespace MemoryGame.Views
             var viewModel = new OptionsViewModel(SelectedUser);
             this.DataContext = viewModel;
 
+            Rows.Text = "4";
+            Cols.Text = "4";
+
+        }
+
+        private void File_Click(object sender, RoutedEventArgs e)
+        {
+            File.Visibility = Visibility.Visible;
+            Help.Visibility = Visibility.Collapsed;
+            Options.Visibility = Visibility.Collapsed;
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
             Help.Visibility = Visibility.Visible;
             Options.Visibility = Visibility.Collapsed;
+            File.Visibility = Visibility.Collapsed;
         }
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
             Options.Visibility = Visibility.Visible;
             Help.Visibility = Visibility.Collapsed;
+            File.Visibility = Visibility.Collapsed;
         }
 
         private void Quit_Click(object sender, RoutedEventArgs e)

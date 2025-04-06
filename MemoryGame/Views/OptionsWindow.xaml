@@ -12,22 +12,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Button Content="File" HorizontalAlignment="Center" Margin="0,137,0,0" VerticalAlignment="Top" Height="35" Width="101"/>
+        <Button Content="File" HorizontalAlignment="Center" Margin="0,137,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="File_Click"/>
         <Button Content="Options" HorizontalAlignment="Center" Margin="0,177,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Options_Click"/>
         <Button Content="Help" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Help_Click"/>
         <Button Content="Quit" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Quit_Click"/>
 
-        <StackPanel x:Name="Options" Grid.Column="1" VerticalAlignment="Center" >
-            <Button Content="Standard" Width="100"/>
-            <Button Content="Custom" Width="100"/>
-            <Slider x:Name="Rows"
-                    Minimum="2"
-                    Maximum="6"
-                    Value="4"
-                    TickFrequency="1"
-                    IsSnapToTickEnabled="True"
-                    Width="100"
-                    Margin="10"/>
+        <StackPanel x:Name="File" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
+            <Button Content="Category" Width="100"/>
+            <Button Content="New Game" Width="100" Command="{Binding OpenNewGameCommand}"/>
+            <Button Content="Open Game" Width="100"/>
+            <Button Content="Save Game" Width="100"/>
+            <Button Content="Statistics" Width="100"/>
+        </StackPanel>
+        
+        <StackPanel x:Name="Options" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
+            <Button Content="Standard" Width="100" Command="{Binding SetStandardGameCommand}"/>
+            <TextBlock Text="Custom" Width="100"/>
+            <TextBox x:Name="Rows" Width="50" Text="{Binding Rows, Mode=TwoWay}"/>
+            <TextBox x:Name="Cols" Width="50" Text="{Binding Cols, Mode=TwoWay}"/>
         </StackPanel>
 
         <StackPanel x:Name="Help" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
