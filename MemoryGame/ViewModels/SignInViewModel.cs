@@ -4,7 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Windows.Input;
 using MemoryGame.Views;
-using static System.Net.Mime.MediaTypeNames;
+using MemoryGame.Models;
 
 namespace MemoryGame.ViewModels
 {
@@ -33,7 +33,7 @@ namespace MemoryGame.ViewModels
 
         public SignInViewModel()
         {
-            Users = LoadUsersFromJson("users.json");
+            Users = LoadUsersFromJson("Data/users.json");
 
             OpenAddUserWindowCommand = new RelayCommand(OpenAddUserWindow);
             DeleteUserCommand = new RelayCommand(DeleteUser, IsUserSelected);
@@ -63,7 +63,7 @@ namespace MemoryGame.ViewModels
             if (SelectedUser != null)
             {
                 Users.Remove(SelectedUser);
-                SaveUsersToJson("users.json");
+                SaveUsersToJson("Data/users.json");
                 SelectedUser = null;
             }
         }
@@ -93,7 +93,7 @@ namespace MemoryGame.ViewModels
 
         public void RefreshUserList()
         {
-            Users = LoadUsersFromJson("users.json");
+            Users = LoadUsersFromJson("Data/users.json");
             OnPropertyChanged(nameof(Users));
         }
 

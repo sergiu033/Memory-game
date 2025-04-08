@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using MemoryGame.Views;
+using MemoryGame.Models;
 
 namespace MemoryGame.ViewModels
 {
@@ -91,11 +91,11 @@ namespace MemoryGame.ViewModels
 
             AvailableProfilePictures = new ObservableCollection<string>
             {
-                "ProfilePictures/image1.jpg",
-                "ProfilePictures/image2.jpg",
-                "ProfilePictures/image3.jpg",
-                "ProfilePictures/image4.jpg",
-                "ProfilePictures/image5.jpg"
+                "Data/ProfilePictures/image1.jpg",
+                "Data/ProfilePictures/image2.jpg",
+                "Data/ProfilePictures/image3.jpg",
+                "Data/ProfilePictures/image4.jpg",
+                "Data/ProfilePictures/image5.jpg"
             };
 
             SelectedProfilePicture = AvailableProfilePictures[profilePictureIndex];
@@ -126,7 +126,7 @@ namespace MemoryGame.ViewModels
             SelectedProfilePicture = AvailableProfilePictures[profilePictureIndex];
         }
 
-        private static string UsersFilePath = "users.json";
+        private static string UsersFilePath = "Data/users.json";
 
         private void AddUser(object parameter)
         {

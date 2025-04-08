@@ -9,49 +9,285 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Animals\**" />
     <Compile Remove="ProfileImages - Copy\**" />
     <Compile Remove="ProfileImages\**" />
+    <Compile Remove="ProfilePictures\**" />
+    <EmbeddedResource Remove="Animals\**" />
     <EmbeddedResource Remove="ProfileImages - Copy\**" />
     <EmbeddedResource Remove="ProfileImages\**" />
+    <EmbeddedResource Remove="ProfilePictures\**" />
+    <None Remove="Animals\**" />
     <None Remove="ProfileImages - Copy\**" />
     <None Remove="ProfileImages\**" />
+    <None Remove="ProfilePictures\**" />
+    <Page Remove="Animals\**" />
     <Page Remove="ProfileImages - Copy\**" />
     <Page Remove="ProfileImages\**" />
+    <Page Remove="ProfilePictures\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\Animals\image1.jpg" />
+    <None Remove="Data\Animals\image10.jpg" />
+    <None Remove="Data\Animals\image11.jpg" />
+    <None Remove="Data\Animals\image12.jpg" />
+    <None Remove="Data\Animals\image13.jpg" />
+    <None Remove="Data\Animals\image14.jpg" />
+    <None Remove="Data\Animals\image15.jpg" />
+    <None Remove="Data\Animals\image16.jpg" />
+    <None Remove="Data\Animals\image17.jpg" />
+    <None Remove="Data\Animals\image18.jpg" />
+    <None Remove="Data\Animals\image2.jpg" />
+    <None Remove="Data\Animals\image3.jpg" />
+    <None Remove="Data\Animals\image4.jpg" />
+    <None Remove="Data\Animals\image5.jpg" />
+    <None Remove="Data\Animals\image6.jpg" />
+    <None Remove="Data\Animals\image7.jpg" />
+    <None Remove="Data\Animals\image8.jpg" />
+    <None Remove="Data\Animals\image9.jpg" />
+    <None Remove="Data\Cars\image1.jpg" />
+    <None Remove="Data\Cars\image10.jpg" />
+    <None Remove="Data\Cars\image11.jpg" />
+    <None Remove="Data\Cars\image12.jpg" />
+    <None Remove="Data\Cars\image13.jpg" />
+    <None Remove="Data\Cars\image14.jpg" />
+    <None Remove="Data\Cars\image15.jpg" />
+    <None Remove="Data\Cars\image16.jpg" />
+    <None Remove="Data\Cars\image17.jpg" />
+    <None Remove="Data\Cars\image18.jpg" />
+    <None Remove="Data\Cars\image2.jpg" />
+    <None Remove="Data\Cars\image3.jpg" />
+    <None Remove="Data\Cars\image4.jpg" />
+    <None Remove="Data\Cars\image5.jpg" />
+    <None Remove="Data\Cars\image6.jpg" />
+    <None Remove="Data\Cars\image7.jpg" />
+    <None Remove="Data\Cars\image8.jpg" />
+    <None Remove="Data\Cars\image9.jpg" />
+    <None Remove="Data\Food\image1.jpg" />
+    <None Remove="Data\Food\image10.jpg" />
+    <None Remove="Data\Food\image11.jpg" />
+    <None Remove="Data\Food\image12.jpg" />
+    <None Remove="Data\Food\image13.jpg" />
+    <None Remove="Data\Food\image14.jpg" />
+    <None Remove="Data\Food\image15.jpg" />
+    <None Remove="Data\Food\image16.jpg" />
+    <None Remove="Data\Food\image17.jpg" />
+    <None Remove="Data\Food\image18.jpg" />
+    <None Remove="Data\Food\image2.jpg" />
+    <None Remove="Data\Food\image3.jpg" />
+    <None Remove="Data\Food\image4.jpg" />
+    <None Remove="Data\Food\image5.jpg" />
+    <None Remove="Data\Food\image6.jpg" />
+    <None Remove="Data\Food\image7.jpg" />
+    <None Remove="Data\Food\image8.jpg" />
+    <None Remove="Data\Food\image9.jpg" />
+    <None Remove="Data\hidden.jpg" />
+    <None Remove="Data\ProfilePictures\image1.jpg" />
+    <None Remove="Data\ProfilePictures\image2.jpg" />
+    <None Remove="Data\ProfilePictures\image3.jpg" />
+    <None Remove="Data\ProfilePictures\image4.jpg" />
+    <None Remove="Data\ProfilePictures\image5.jpg" />
+    <None Remove="Data\users.json" />
+    <None Remove="hidden.jpg" />
     <None Remove="image1.jpg" />
     <None Remove="image2.jpg" />
     <None Remove="image3.jpg" />
     <None Remove="image4.jpg" />
     <None Remove="image5.jpg" />
-    <None Remove="ProfilePictures\image1.jpg" />
-    <None Remove="ProfilePictures\image2.jpg" />
-    <None Remove="ProfilePictures\image3.jpg" />
-    <None Remove="ProfilePictures\image4.jpg" />
-    <None Remove="ProfilePictures\image5.jpg" />
     <None Remove="users.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ProfilePictures\image1.jpg">
+    <Content Include="Data\Animals\image1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfilePictures\image2.jpg">
+    <Content Include="Data\Animals\image10.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfilePictures\image3.jpg">
+    <Content Include="Data\Animals\image11.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfilePictures\image4.jpg">
+    <Content Include="Data\Animals\image12.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfilePictures\image5.jpg">
+    <Content Include="Data\Animals\image13.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="users.json">
+    <Content Include="Data\Animals\image14.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Animals\image15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image16.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image17.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image18.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Animals\image9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image10.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image11.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image12.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image13.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image14.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image16.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image17.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image18.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Cars\image9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image10.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image11.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image12.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image13.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image14.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image16.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image17.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image18.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Food\image9.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\hidden.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ProfilePictures\image1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ProfilePictures\image2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ProfilePictures\image3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ProfilePictures\image4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ProfilePictures\image5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\users.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models\GameGrid.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

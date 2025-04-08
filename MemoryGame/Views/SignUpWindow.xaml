@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:MemoryGame" xmlns:local1="clr-namespace:MemoryGame.ViewModels"
         mc:Ignorable="d"
         Title="Sign In" Height="450" Width="650">
-    <Window.DataContext>
-        <local1:SignInViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

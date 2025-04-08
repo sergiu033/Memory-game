@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MemoryGame.Models;
 
 namespace MemoryGame.Views
 {
@@ -24,15 +25,17 @@ namespace MemoryGame.Views
         private User _selectedUser;
         private int _rows;
         private int _cols;
-        public GameWindow(User selectedUser, int rows, int cols)
+        private PictureSet _pictureSet;
+        public GameWindow(User selectedUser, int rows, int cols, PictureSet set)
         {
             InitializeComponent();
 
             _selectedUser = selectedUser;
             _rows = rows;
             _cols = cols;
+            _pictureSet = set;
 
-            var viewModel = new GameViewModel(_selectedUser, _rows, _cols);
+            var viewModel = new GameViewModel(_selectedUser, _rows, _cols, _pictureSet);
             this.DataContext = viewModel;
         }
     }

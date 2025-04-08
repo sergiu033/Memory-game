@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:MemoryGame.Views"
         mc:Ignorable="d"
         Title="OptionsWindow" Height="450" Width="650">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
@@ -18,7 +21,12 @@
         <Button Content="Quit" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Height="35" Width="101" Click="Quit_Click"/>
 
         <StackPanel x:Name="File" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
-            <Button Content="Category" Width="100"/>
+            <Button Content="Select Category" Command="{Binding ToggleCategoryCommand}" Width="100"/>
+            <StackPanel Visibility="{Binding ShowCategories, Converter={StaticResource BoolToVisibilityConverter}}" Margin="10,5,0,0">
+                <Button Content="Animals" Command="{Binding SelectCategoryCommand}" CommandParameter="Animals" Width="100"/>
+                <Button Content="Cars" Command="{Binding SelectCategoryCommand}" CommandParameter="Cars" Width="100"/>
+                <Button Content="Food" Command="{Binding SelectCategoryCommand}" CommandParameter="Food" Width="100"/>
+            </StackPanel>
             <Button Content="New Game" Width="100" Command="{Binding OpenNewGameCommand}"/>
             <Button Content="Open Game" Width="100"/>
             <Button Content="Save Game" Width="100"/>

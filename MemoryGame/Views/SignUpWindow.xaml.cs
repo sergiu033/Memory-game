@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MemoryGame.ViewModels;
 namespace MemoryGame.Views;
 
 public partial class SignUpWindow : Window
@@ -16,6 +16,8 @@ public partial class SignUpWindow : Window
     public SignUpWindow()
     {
         InitializeComponent();
+        var viewModel = new SignInViewModel();
+        this.DataContext = viewModel;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

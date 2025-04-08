@@ -1,0 +1,14 @@
+[
+  {
+    "userName": "Alice",
+    "profilePictureFilePath": "Data/ProfilePictures/image1.jpg"
+  },
+  {
+    "userName": "Bob",
+    "profilePictureFilePath": "Data/ProfilePictures/image2.jpg"
+  },
+  {
+    "userName": "Charlie",
+    "profilePictureFilePath": "Data/ProfilePictures/image3.jpg"
+  }
+]
