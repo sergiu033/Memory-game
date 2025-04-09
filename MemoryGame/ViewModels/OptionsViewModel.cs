@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using MemoryGame.Models;
+using Microsoft.Win32;
 
 namespace MemoryGame.ViewModels
 {
@@ -22,14 +23,19 @@ namespace MemoryGame.ViewModels
     {
         private User _selectedUser;
         private PictureSet _picSet;
+        private string _baseLoadingPath;
+        private string _selectedLoadingJson;
+
         public OptionsViewModel(User selectedUser)
         {
             _picSet = PictureSet.Animals;
+            _baseLoadingPath = "Saves/" + selectedUser.UserName;
             _selectedUser = selectedUser;
             _rows = 4;
             _cols = 4;
             OpenNewGameCommand = new RelayCommand(OpenNewGame);
             SetStandardGameCommand = new RelayCommand(SetStandardGame);
+            OpenSavedGameCommand = new RelayCommand(OpenSavedGame);
             ToggleCategoryCommand = new RelayCommand(_ => ShowCategories = !ShowCategories);
             SelectCategoryCommand = new RelayCommand(param =>
             {
@@ -39,6 +45,19 @@ namespace MemoryGame.ViewModels
                     ShowCategories = false;
                 }
             });
+        }
+
+        public String SelectedLoadingJson
+        {
+            get { return _selectedLoadingJson; }
+            set
+            {
+                if (_selectedLoadingJson != value )
+                    {
+                        _selectedLoadingJson = value;
+                        OnPropertyChanged(nameof(SelectedLoadingJson));
+                    }
+            }
         }
 
         public User SelectedUser
@@ -100,6 +119,7 @@ namespace MemoryGame.ViewModels
         public ICommand SetStandardGameCommand { get; }
         public ICommand ToggleCategoryCommand { get; }
         public ICommand SelectCategoryCommand { get; }
+        public ICommand OpenSavedGameCommand { get; }
 
         private void OpenNewGame(object parameter)
         {
@@ -111,6 +131,24 @@ namespace MemoryGame.ViewModels
         {
             Rows = 4;
             Cols = 4;
+        }
+
+        private void OpenSavedGame(object parameter)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = "Select Save File",
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                InitialDirectory = "Saves" 
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string selectedFilePath = openFileDialog.FileName;
+
+                GameWindow gameWindow = new GameWindow(SelectedUser, selectedFilePath);
+                gameWindow.ShowDialog();
+            }
         }
 
         private bool _showCategories;

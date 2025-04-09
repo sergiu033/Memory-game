@@ -26,6 +26,7 @@ namespace MemoryGame.Views
         private int _rows;
         private int _cols;
         private PictureSet _pictureSet;
+        private string _jsonFile;
         public GameWindow(User selectedUser, int rows, int cols, PictureSet set)
         {
             InitializeComponent();
@@ -36,6 +37,17 @@ namespace MemoryGame.Views
             _pictureSet = set;
 
             var viewModel = new GameViewModel(_selectedUser, _rows, _cols, _pictureSet);
+            this.DataContext = viewModel;
+        }
+
+        public GameWindow(User selecteduser, string jsonFile)
+        {
+            InitializeComponent();
+
+            _selectedUser = selecteduser;
+            _jsonFile = jsonFile;
+
+            var viewModel = new GameViewModel(_jsonFile, _selectedUser);
             this.DataContext = viewModel;
         }
     }

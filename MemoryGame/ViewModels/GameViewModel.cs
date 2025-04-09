@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,16 @@ namespace MemoryGame.ViewModels
             _grid = new GameGrid(_rows, _cols, _pictureSet);
 
             FlipCardCommand = new RelayCommand(FlipCard);
+            SaveGameCommand = new RelayCommand(SaveGame);
+        }
+
+        public GameViewModel(string jsonFile, User selectedUser)
+        {
+            _selectedUser = selectedUser;
+             _grid = GameGrid.LoadFromFile(jsonFile);
+
+            FlipCardCommand = new RelayCommand(FlipCard);
+            SaveGameCommand = new RelayCommand(SaveGame);
         }
 
         public int Rows
@@ -70,11 +81,10 @@ namespace MemoryGame.ViewModels
         }
 
         public ICommand FlipCardCommand { get; }
+        public ICommand SaveGameCommand { get; }
 
         private GridCell _firstFlippedCell;
         private bool _isCheckingMatch;
-        private User selectedUser;
-        private PictureSet pictureSet;
 
         private async void FlipCard(object parameter)
         {
@@ -122,6 +132,19 @@ namespace MemoryGame.ViewModels
                     .FirstOrDefault(w => w.DataContext == this)
                     ?.Close();
             }
+        }
+
+        private void SaveGame(object parameter)
+        {
+            string baseFolder = "Saves";
+            string userFolder = Path.Combine(baseFolder, _selectedUser.UserName);
+
+            if (!Directory.Exists(userFolder))
+            {
+                Directory.CreateDirectory(userFolder);
+            }
+
+            Grid.SaveToFile(userFolder);
         }
 
         public IEnumerable<GridCell> Cells => _grid.Cells;

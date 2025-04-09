@@ -1,27 +1,27 @@
 ﻿using MemoryGame.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
+using System.IO;
+using System.Text.Json;
 
 namespace MemoryGame.Models
 {
     public class GameGrid
     {
-        private int _rows;
-        private int _columns;
-        private string _pictureSetFilePath;
-        private List<string> _images;
-        private GridCell[,] gridCells;
+        public int Rows { get; set; }
+        public int Columns { get; set; }
+        public string PictureSetFilePath { get; set; }
+        public List<string> Images { get; set; }
+        public List<List<GridCell>> GridCells { get; set; }
+
+        public GameGrid() { }
 
         public GameGrid(int rows, int columns, PictureSet pictureSet)
         {
-            _rows = rows;
-            _columns = columns;
-            _images = new List<string>();
-            gridCells = new GridCell[rows, columns];
+            Rows = rows;
+            Columns = columns;
+            Images = new List<string>();
+            GridCells = new List<List<GridCell>>();
 
             LoadPictureSetPath(pictureSet);
             LoadAndRandomizeImages();
@@ -30,94 +30,106 @@ namespace MemoryGame.Models
 
         private void LoadPictureSetPath(PictureSet pictureSet)
         {
-            switch(pictureSet)
+            PictureSetFilePath = pictureSet switch
             {
-                case PictureSet.Animals:
-                    {
-                        _pictureSetFilePath = "Data/Animals";
-                        break;
-                    }
-                case PictureSet.Cars:
-                    {
-                        _pictureSetFilePath = "Data/Cars";
-                        break;
-                    }
-                case PictureSet.Food:
-                    {
-                        _pictureSetFilePath = "Data/Food";
-                        break;
-                    }
-            }
+                PictureSet.Animals => "Data/Animals",
+                PictureSet.Cars => "Data/Cars",
+                PictureSet.Food => "Data/Food",
+                _ => "Data/Default"
+            };
         }
 
         private void LoadAndRandomizeImages()
         {
             for (int i = 0; i < 18; i++)
             {
-                _images.Add($"{_pictureSetFilePath}/image{i + 1}.jpg");
+                Images.Add($"{PictureSetFilePath}/image{i + 1}.jpg");
             }
 
             Random rng = new Random();
-            int n = _images.Count;
+            int n = Images.Count;
 
             while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                String value = _images[k];
-                _images[k] = _images[n];
-                _images[n] = value;
+                var value = Images[k];
+                Images[k] = Images[n];
+                Images[n] = value;
             }
         }
 
         private void GenerateGrid()
         {
-            for (int row = 0; row < _rows; row++)
+            for (int row = 0; row < Rows; row++)
             {
-                for (int col = 0; col < _columns; col++)
+                var rowList = new List<GridCell>();
+                for (int col = 0; col < Columns; col++)
                 {
-                    gridCells[row, col] = new GridCell();
+                    rowList.Add(new GridCell());
                 }
+                GridCells.Add(rowList);
             }
 
-            int nImages = _rows * _columns / 2;
+            int nImages = Rows * Columns / 2;
+            Random rng = new Random();
 
             for (int i = 0; i < nImages; i++)
             {
-                Random rng = new Random();
+                AssignImageToRandomCell(Images[i], rng);
+                AssignImageToRandomCell(Images[i], rng);
+            }
+        }
 
-                while (true)
+        private void AssignImageToRandomCell(string imagePath, Random rng)
+        {
+            while (true)
+            {
+                int randomRow = rng.Next(Rows);
+                int randomCol = rng.Next(Columns);
+
+                if (!GridCells[randomRow][randomCol].HasPictureAssigned)
                 {
-                    int randomRow = rng.Next(_rows);
-                    int randomColumn = rng.Next(_columns);
-
-                    if (!gridCells[randomRow, randomColumn].HasPictureAssigned)
-                    {
-                        gridCells[randomRow, randomColumn].PictureFilePath = _images[i];
-                        break;
-                    }
-                }
-
-                while (true)
-                {
-                    int randomRow = rng.Next(_rows);
-                    int randomColumn = rng.Next(_columns);
-
-                    if (!gridCells[randomRow, randomColumn].HasPictureAssigned)
-                    {
-                        gridCells[randomRow, randomColumn].PictureFilePath = _images[i];
-                        break;
-                    }
+                    GridCells[randomRow][randomCol].PictureFilePath = imagePath;
+                    break;
                 }
             }
         }
+
         public IEnumerable<GridCell> Cells
         {
             get
             {
-                foreach (var cell in gridCells)
-                    yield return cell;
+                foreach (var row in GridCells)
+                {
+                    foreach (var cell in row)
+                    {
+                        yield return cell;
+                    }
+                }
             }
+        }
+
+        public void SaveToFile(string folderPath)
+        {
+            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+
+            string saveName = "save_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".json";
+            string totalFilePath = Path.Combine(folderPath, saveName);
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            File.WriteAllText(totalFilePath, json);
+        }
+
+
+        public static GameGrid LoadFromFile(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<GameGrid>(json);
         }
     }
 }

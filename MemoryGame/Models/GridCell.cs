@@ -17,18 +17,12 @@ namespace MemoryGame.Models
         private bool _hasPictureAssigned;
         private bool _isRevealed;
 
+        public GridCell() { }
+
         public GridCell(string pictureFilePath)
         {
             _pictureFilePath = pictureFilePath;
             _hasPictureAssigned = true;
-            _isRevealed = false;
-            _isMatched = false;
-        }
-
-        public GridCell()
-        {
-            _pictureFilePath = "";
-            _hasPictureAssigned = false;
             _isRevealed = false;
             _isMatched = false;
         }
@@ -47,6 +41,7 @@ namespace MemoryGame.Models
             }
         }
 
+        [JsonIgnore]
         public ImageSource DisplayImage
         {
             get

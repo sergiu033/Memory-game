@@ -28,8 +28,7 @@
                 <Button Content="Food" Command="{Binding SelectCategoryCommand}" CommandParameter="Food" Width="100"/>
             </StackPanel>
             <Button Content="New Game" Width="100" Command="{Binding OpenNewGameCommand}"/>
-            <Button Content="Open Game" Width="100"/>
-            <Button Content="Save Game" Width="100"/>
+            <Button Content="Open Game" Width="100" Command="{Binding OpenSavedGameCommand}"/>
             <Button Content="Statistics" Width="100"/>
         </StackPanel>
         
