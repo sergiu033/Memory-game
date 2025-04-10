@@ -62,6 +62,11 @@ namespace MemoryGame.ViewModels
         {
             if (SelectedUser != null)
             {
+                string folderPath = "Saves/" + SelectedUser.UserName;
+                if (Directory.Exists(folderPath))
+                {
+                    Directory.Delete(folderPath, recursive: true);
+                }
                 Users.Remove(SelectedUser);
                 SaveUsersToJson("Data/users.json");
                 SelectedUser = null;

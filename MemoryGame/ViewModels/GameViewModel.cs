@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -125,6 +127,9 @@ namespace MemoryGame.ViewModels
         {
             if (Grid.Cells.All(cell => cell.IsMatched))
             {
+                _selectedUser.GamesWon++;
+                int gamesWon = _selectedUser.GamesWon;
+                IncreaseGamesWon(gamesWon);
                 MessageBox.Show("You win!", "Memory Game", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 Application.Current.Windows
@@ -145,6 +150,29 @@ namespace MemoryGame.ViewModels
             }
 
             Grid.SaveToFile(userFolder);
+        }
+
+        private void IncreaseGamesWon(int gamesWon)
+        {
+            string filePath = "Data/users.json";
+
+            string jsonString = File.ReadAllText(filePath);
+            JsonNode? root = JsonNode.Parse(jsonString);
+
+            if (root is JsonArray people)
+            {
+                foreach (var personNode in people)
+                {
+                    if (personNode is JsonObject person && person["userName"]?.ToString() == _selectedUser.UserName)
+                    {
+                        person["gamesWon"] = gamesWon;
+                        break;
+                    }
+                }
+
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                File.WriteAllText(filePath, root.ToJsonString(options));
+            }
         }
 
         public IEnumerable<GridCell> Cells => _grid.Cells;

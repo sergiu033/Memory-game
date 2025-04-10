@@ -29,7 +29,11 @@
             </StackPanel>
             <Button Content="New Game" Width="100" Command="{Binding OpenNewGameCommand}"/>
             <Button Content="Open Game" Width="100" Command="{Binding OpenSavedGameCommand}"/>
-            <Button Content="Statistics" Width="100"/>
+            <Button Content="Statistics" Width="100" Command="{Binding ToggleStatisticsCommand}"/>
+            <StackPanel Visibility="{Binding ShowStatistics, Converter={StaticResource BoolToVisibilityConverter}}" Margin="10,5,0,0">
+                <TextBlock Text="{Binding SelectedUser.GamesWon, StringFormat='Games Won: {0}'}" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding SelectedUser.GamesPlayed, StringFormat='Games Played: {0}'}" HorizontalAlignment="Center"/>
+            </StackPanel>
         </StackPanel>
         
         <StackPanel x:Name="Options" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">

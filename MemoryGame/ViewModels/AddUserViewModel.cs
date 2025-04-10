@@ -136,7 +136,7 @@ namespace MemoryGame.ViewModels
             }
 
             var users = LoadUsersFromJson(UsersFilePath);
-            users.Add(new User(NewUserName, NewUserProfilePath));
+            users.Add(new User(NewUserName, NewUserProfilePath, 0, 0));
             SaveUsersToJson(UsersFilePath, users);
 
             NewUserName = "";

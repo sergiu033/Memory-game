@@ -9,6 +9,9 @@ using System.Windows.Data;
 using System.Windows.Input;
 using MemoryGame.Models;
 using Microsoft.Win32;
+using System.Text.Json.Nodes;
+using System.Text.Json;
+using System.IO;
 
 namespace MemoryGame.ViewModels
 {
@@ -45,6 +48,7 @@ namespace MemoryGame.ViewModels
                     ShowCategories = false;
                 }
             });
+            ToggleStatisticsCommand = new RelayCommand(_ => ShowStatistics = !ShowStatistics);
         }
 
         public String SelectedLoadingJson
@@ -118,11 +122,15 @@ namespace MemoryGame.ViewModels
         public ICommand OpenNewGameCommand { get; }
         public ICommand SetStandardGameCommand { get; }
         public ICommand ToggleCategoryCommand { get; }
+        public ICommand ToggleStatisticsCommand { get; }
         public ICommand SelectCategoryCommand { get; }
         public ICommand OpenSavedGameCommand { get; }
 
         private void OpenNewGame(object parameter)
         {
+            _selectedUser.GamesPlayed++;
+            int gamesPlayed = _selectedUser.GamesPlayed;
+            IncreaseGamesPlayed(gamesPlayed);
             GameWindow gameWindow = new GameWindow(SelectedUser, Rows, Cols, PicSet);
             gameWindow.ShowDialog();
         }
@@ -151,6 +159,29 @@ namespace MemoryGame.ViewModels
             }
         }
 
+        private void IncreaseGamesPlayed(int gamesPlayed)
+        {
+            string filePath = "Data/users.json";
+
+            string jsonString = File.ReadAllText(filePath);
+            JsonNode? root = JsonNode.Parse(jsonString);
+
+            if (root is JsonArray people)
+            {
+                foreach (var personNode in people)
+                {
+                    if (personNode is JsonObject person && person["userName"]?.ToString() == _selectedUser.UserName)
+                    {
+                        person["gamesPlayed"] = gamesPlayed;
+                        break;
+                    }
+                }
+
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                File.WriteAllText(filePath, root.ToJsonString(options));
+            }
+        }
+
         private bool _showCategories;
         public bool ShowCategories
         {
@@ -159,6 +190,17 @@ namespace MemoryGame.ViewModels
             {
                 _showCategories = value;
                 OnPropertyChanged(nameof(ShowCategories));
+            }
+        }
+
+        private bool _showStatistics;
+        public bool ShowStatistics
+        {
+            get => _showStatistics;
+            set
+            {
+                _showStatistics = value;
+                OnPropertyChanged(nameof(ShowStatistics));
             }
         }
 

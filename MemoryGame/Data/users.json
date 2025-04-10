@@ -1,14 +1,20 @@
 [
   {
     "userName": "Alice",
-    "profilePictureFilePath": "Data/ProfilePictures/image1.jpg"
+    "profilePictureFilePath": "Data/ProfilePictures/image1.jpg",
+    "gamesPlayed": 0,
+    "gamesWon": 0
   },
   {
     "userName": "Bob",
-    "profilePictureFilePath": "Data/ProfilePictures/image2.jpg"
+    "profilePictureFilePath": "Data/ProfilePictures/image2.jpg",
+    "gamesPlayed": 0,
+    "gamesWon": 0
   },
   {
     "userName": "Charlie",
-    "profilePictureFilePath": "Data/ProfilePictures/image3.jpg"
+    "profilePictureFilePath": "Data/ProfilePictures/image3.jpg",
+    "gamesPlayed": 0,
+    "gamesWon": 0
   }
 ]

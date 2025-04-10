@@ -16,6 +16,8 @@ namespace MemoryGame.Models
     {
         private string userName;
         private string profilePictureFilePath;
+        private int gamesPlayed;
+        private int gamesWon;
 
         public string UserName
         {
@@ -43,6 +45,32 @@ namespace MemoryGame.Models
             }
         }
 
+        public int GamesPlayed
+        {
+            get { return gamesPlayed; }
+            set
+            {
+                if (gamesPlayed != value)
+                {
+                    gamesPlayed = value;
+                    OnPropertyChanged(nameof(GamesPlayed));
+                }
+            }
+        }
+
+        public int GamesWon
+        {
+            get { return gamesWon; }
+            set
+            {
+                if (gamesWon != value)
+                {
+                    gamesWon = value;
+                    OnPropertyChanged(nameof(GamesWon));
+                }
+            }
+        }
+
         [JsonIgnore]
         public ImageSource ProfilePicture
         {
@@ -64,10 +92,13 @@ namespace MemoryGame.Models
 
         public User() { }
 
-        public User(string userName, string profilePictureFilePath)
+        public User(string userName, string profilePictureFilePath, int gamesPlayed, int gamesWon)
         {
             UserName = userName;
             ProfilePictureFilePath = profilePictureFilePath;
+            GamesPlayed = gamesPlayed;
+            GamesWon = gamesWon;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
